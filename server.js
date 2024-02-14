@@ -6,23 +6,6 @@ http
   .createServer((req, res) => {
     const parsedUrl = url.parse(req.url, true);
 
-    const homeContent = `
-    <html>
-      <head>
-        <title>Welcome to Edwin's Web Server</title>
-      </head>
-      <body>
-        <h1>Welcome to Edwin's insane Web Server</h1>
-        <div>
-          <p>Hello, Are you ready?</p>
-          <p>Edit the URL Path up there</p>
-          <p>Try typing a random query</p>
-          <p>like: "/custom?value=WhatEverYouWantHere"</p>
-        </div>
-      </body>
-    </html>
-  `;
-
     const aboutContent = `
     <html>
       <head>
@@ -70,7 +53,7 @@ http
     } else if (parsedUrl.pathname === "/rules") {
       serveTextFile(res, "rules.txt");
     } else {
-      serveHtml(res, homeContent);
+      serveHtmlFile(res, "home.html");
     }
   })
   .listen(3000);
@@ -110,11 +93,13 @@ function getCustomContent(value) {
   return `
     <html>
       <head>
-        <title>Custom Page</title>
+        <title>Custom Query Page</title>
       </head>
       <body>
-        <h1>This is a custom page</h1>
+        <h1>This is a custom query page</h1>
         <div>
+        <p> Congratulation on entering a unique and own query value! </p
+        <p> I'm a smart computer, and I can read you well! </p> 
           <p>${value ? `Query parameter value: ${value}` : ""}</p>
         </div>
       </body>
