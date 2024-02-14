@@ -122,3 +122,15 @@ function getUndefinedContent() {
     </html>
   `;
 }
+
+function serveJpegImage(res, fileName) {
+  fs.readFile(fileName, (err, data) => {
+    if (err) {
+      serveError(res, 500, "Internal Server Error");
+      return;
+    }
+
+    res.writeHead(200, { "Content-Type": "image/jpeg" });
+    res.end(data);
+  });
+}
