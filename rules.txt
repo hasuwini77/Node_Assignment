@@ -1,0 +1,25 @@
+\\\\\\\\\ ED SERVER RULES //////////
+           Q(O__________o)Q
+               (") (") 
+
+Rule of the Mighty Buffer: Always carry a magical buffer with you. If you encounter a bug, simply sprinkle some bytes from the buffer on your keyboard for good luck.
+
+NPM Yoga Challenge: Before running any npm command, you must first strike a yoga pose. Bonus points for creativity. Downward-facing Dog will significantly improve your package installations.
+
+Error Message Poetry Slam: When encountering an error, express your frustration through a poetic interpretation of the error message. Bonus points for rhyming and metaphors.
+
+Semaphore Syntax Dance: To properly signal your intentions in the code, perform a semaphore dance. Use flags and hand movements to convey your logic to fellow developers.
+
+Async-Await Opera Singing: Wrap all asynchronous operations in a melodious opera performance. The more dramatic, the better. Extra points for hitting high notes during file I/O.
+
+Callback Callback: Before calling any callback function, you must first call a callback to ask for permission. Nested callbacks are encouraged, as long as each one seeks approval from the grand callback council.
+
+Middleware Moustache: Developers must wear fake mustaches while writing middleware functions. The bushier the mustache, the more robust the middleware.
+
+The Great Node.js Haiku Challenge: All bug reports and feature requests must be submitted in the form of a haiku. Creativity is key, and bonus points are awarded for seasonal themes.
+
+Promise Pantomime: Instead of resolving promises in code, act out the resolution through interpretive dance. Make sure to convey the emotions associated with fulfilled and rejected promises.
+
+Random Module Roulette: Once a day, include a random Node.js module in your project, regardless of its relevance. Bonus points if the module name rhymes with your favorite fruit.
+
+Remember, these rules are entirely fictional and meant for humor. In the real world, best practices and clear communication are key when working on projects, even if they don't involve semaphore dances or buffer sprinkling!

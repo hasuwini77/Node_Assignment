@@ -1,10 +1,10 @@
 const http = require("http");
-const { Buffer } = require("buffer");
 const url = require("url");
+const fs = require("fs");
 
 http
   .createServer((req, res) => {
-    const parsedUrl = url.parse(req.url, true); // Parse the URL with query parameters
+    const parsedUrl = url.parse(req.url, true);
 
     const homeContent = `
     <html>
@@ -15,9 +15,9 @@ http
         <h1>Welcome to Edwin's insane Web Server</h1>
         <div>
           <p>Hello, Are you ready?</p>
-          <p> edit the Url Path up there </p> 
-          <p> Try typing a random query </p>
-          <p> like: "/custom?value=WhatEverYouWantHere" </p>  
+          <p>Edit the URL Path up there</p>
+          <p>Try typing a random query</p>
+          <p>like: "/custom?value=WhatEverYouWantHere"</p>
         </div>
       </body>
     </html>
@@ -55,62 +55,70 @@ http
     </html>
   `;
 
-    res.writeHead(200, { "Content-Type": "text/html" });
-
     if (parsedUrl.pathname === "/about") {
-      res.end(aboutContent);
+      serveHtml(res, aboutContent);
     } else if (parsedUrl.pathname === "/contact") {
-      res.end(contactContent);
+      serveHtml(res, contactContent);
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === undefined) {
-      const customContent = `
-      <html>
-        <head>
-          <title>Custom Page</title>
-        </head>
-        <body>
-          <h1>This is a custom page</h1>
-          <div>
-            <p>Try adding "?value=XXXXX" in the path of your URL</p>
-              <p>XXXXX being any value you want, ANYTHING!</p>
-          </div>
-        </body>
-      </html>
-    `;
-      res.end(customContent);
+      serveHtml(res, getCustomContent());
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value !== undefined) {
-      const customContent = `
-      <html>
-        <head>
-          <title>Custom Page</title>
-        </head>
-        <body>
-          <h1>This is a custom page</h1>
-          <div>
-          <p> And here it goes, legend! </p> 
-            <p>Our amazing server has recognized your </p>
-            <p> Query parameter value: ${parsedUrl.query.value}</p>
-          </div>
-        </body>
-      </html>
-    `;
-      res.end(customContent);
+      serveHtml(res, getCustomContent(parsedUrl.query.value));
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === "surprise") {
-      const surpriseContent = ` 
-         <html>
-        <head>
-          <title>Surprise Page</title>
-        </head>
-        <body>
-          <h1>And here comes the ${parsedUrl.query.value} my friend!</h1>
-          <div>
-            <p> Let's see what happens... </p>
-          </div>
-        </body>
-      </html>
-        `;
-      res.end(surpriseContent);
+      serveHtmlFile(res, "surpriseContent.html");
+    } else if (parsedUrl.pathname === "/index") {
+      serveHtmlFile(res, "index.html");
+    } else if (parsedUrl.pathname === "/rules") {
+      serveTextFile(res, "rules.txt");
     } else {
-      res.end(homeContent);
+      serveHtml(res, homeContent);
     }
   })
   .listen(3000);
+
+function serveHtml(res, content) {
+  res.writeHead(200, { "Content-Type": "text/html" });
+  res.end(content);
+}
+
+function serveHtmlFile(res, fileName) {
+  fs.readFile(fileName, "utf8", (err, data) => {
+    if (err) {
+      serveError(res, 500, "Internal Server Error");
+      return;
+    }
+    serveHtml(res, data);
+  });
+}
+
+function serveTextFile(res, fileName) {
+  fs.readFile(fileName, "utf8", (err, data) => {
+    if (err) {
+      serveError(res, 500, "Internal Server Error");
+      return;
+    }
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end(data);
+  });
+}
+
+function serveError(res, statusCode, message) {
+  res.writeHead(statusCode, { "Content-Type": "text/plain" });
+  res.end(message);
+}
+
+function getCustomContent(value) {
+  return `
+    <html>
+      <head>
+        <title>Custom Page</title>
+      </head>
+      <body>
+        <h1>This is a custom page</h1>
+        <div>
+          <p>Try adding "?value=${value}" in the path of your URL</p>
+          <p>${value ? `Query parameter value: ${value}` : ""}</p>
+        </div>
+      </body>
+    </html>
+  `;
+}
