@@ -59,12 +59,12 @@ http
       serveHtml(res, aboutContent);
     } else if (parsedUrl.pathname === "/contact") {
       serveHtml(res, contactContent);
+    } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === "surprise") {
+      serveHtmlFile(res, "surpriseContent.html", { dynamicValue: parsedUrl.query.value });
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === undefined) {
-      serveHtml(res, getCustomContent());
+      serveHtml(res, getUndefinedContent());
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value !== undefined) {
       serveHtml(res, getCustomContent(parsedUrl.query.value));
-    } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === "surprise") {
-      serveHtmlFile(res, "surpriseContent.html");
     } else if (parsedUrl.pathname === "/index") {
       serveHtmlFile(res, "index.html");
     } else if (parsedUrl.pathname === "/rules") {
@@ -115,8 +115,23 @@ function getCustomContent(value) {
       <body>
         <h1>This is a custom page</h1>
         <div>
-          <p>Try adding "?value=${value}" in the path of your URL</p>
           <p>${value ? `Query parameter value: ${value}` : ""}</p>
+        </div>
+      </body>
+    </html>
+  `;
+}
+
+function getUndefinedContent() {
+  return `
+    <html>
+      <head>
+        <title>Custom Page</title>
+      </head>
+      <body>
+        <h1>This is a custom page</h1>
+        <div>
+          <p>Try adding "?value=${value}" in the path of your URL</p>
         </div>
       </body>
     </html>
