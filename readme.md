@@ -27,6 +27,15 @@ create a server, port number, go to safari type in localhost:portnumber, render 
 
 TO GET VÄLGODKÄNT: 
 
+To achieve a Välgodkänt grade you must do the above and:
+Read queries passed in the url
+Generate different content based on the queries
+The content should be stored in external files
+
+The actual content, routes and queries are entirety up to you. For ease of assessment, I strongly recommend adding instructions on how to access your routes and queries to the home page. I need to know where I'm supposed to go!
+
+Submission: gitub pages does NOT support Node, so submission will be a link to the repo. I will clone it and run it locally.
+
 const url = require(`url`)
  
 url: localHost:3030/about?name=whisky. Queries is ?name=whisky&category=cat
