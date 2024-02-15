@@ -43,7 +43,8 @@ http
     } else if (parsedUrl.pathname === "/contact") {
       serveHtml(res, contactContent);
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === "surprise") {
-      serveHtmlFile(res, "surpriseContent.html", { dynamicValue: parsedUrl.query.value });
+      serveHtmlFile(res, "surpriseContent.html");
+      serveJpegImage(res, "robpic.jpeg");
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === undefined) {
       serveHtml(res, getUndefinedContent());
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value !== undefined) {
@@ -134,3 +135,5 @@ function serveJpegImage(res, fileName) {
     res.end(data);
   });
 }
+
+// submit?content=Yoda
