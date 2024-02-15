@@ -2,6 +2,8 @@ const http = require("http");
 const url = require("url");
 const fs = require("fs");
 
+let surpriseArray = ["robhulk.png", "RobStachBasic.png", "robverine.png", "robyoda1.png", "robyoda2.png"];
+let surprisePic = surpriseArray[Math.floor(Math.random() * surpriseArray.length)];
 http
   .createServer((req, res) => {
     const parsedUrl = url.parse(req.url, true);
@@ -44,7 +46,9 @@ http
       serveHtml(res, contactContent);
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === "surprise") {
       serveHtmlFile(res, "surpriseContent.html");
-      serveJpegImage(res, "robpic.jpeg");
+      setTimeout(() => {
+        serveJpegImage(res, surprisePic);
+      }, 2500);
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === undefined) {
       serveHtml(res, getUndefinedContent());
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value !== undefined) {
