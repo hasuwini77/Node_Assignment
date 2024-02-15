@@ -134,11 +134,9 @@ function getUndefinedContent() {
       <body>
         <h1>This is a custom page</h1>
         <div>
-          <p>Try adding "?value=${value}" in the path of your URL</p>
+          <p>Try adding "?value=valueofyourchoice" in the path of your URL</p>
         </div>
       </body>
     </html>
   `;
 }
-
-// submit?content=Yoda
