@@ -42,10 +42,22 @@ http
     </html>
   `;
 
+    //  /submit?value=yoda
+
     if (parsedUrl.pathname === "/about") {
       serveHtml(res, aboutContent);
     } else if (parsedUrl.pathname === "/contact") {
       serveHtml(res, contactContent);
+    } else if (parsedUrl.pathname === "/generate") {
+      serveHtmlFile(res, "generate.html");
+    } else if (parsedUrl.pathname === "/submit" && parsedUrl.query.value === "yoda") {
+      serveJpegImage(res, "./robyoda1.jpg");
+    } else if (parsedUrl.pathname === "/submit" && parsedUrl.query.value === "wolverine") {
+      serveJpegImage(res, "./robverine.jpg");
+    } else if (parsedUrl.pathname === "/submit" && parsedUrl.query.value === "hulk") {
+      serveJpegImage(res, "./robhulk.jpg");
+    } else if (parsedUrl.pathname === "/submit" && parsedUrl.query.value === "moustache") {
+      serveJpegImage(res, "./RobStachBasic.jpg");
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === "surprise") {
       serveHtmlFile(res, "surpriseContent.html");
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === undefined) {
