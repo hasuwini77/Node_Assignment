@@ -18,6 +18,7 @@ http
         <div>
           <p>Only bright-minded people allowed</p>
         </div>
+          <a href="./"> <p>Click here to go back home</p></a>
       </body>
     </html>
   `;
@@ -36,6 +37,7 @@ http
             <input type="submit" value="Submit">
           </form>
         </div>
+           <a href="./"> <p>Click here to go back home</p></a>
       </body>
     </html>
   `;
@@ -120,6 +122,7 @@ function getCustomContent(value) {
         <p> I'm a smart computer, and I can read you well! </p> 
           <p>${value ? `Query parameter value: ${value}` : ""}</p>
         </div>
+           <a href="./"> <p>Click here to go back home</p></a>
       </body>
     </html>
   `;
@@ -136,6 +139,7 @@ function getUndefinedContent() {
         <div>
           <p>Try adding "?value=valueofyourchoice" in the path of your URL</p>
         </div>
+           <a href="./"> <p>Click here to go back home</p></a>
       </body>
     </html>
   `;
