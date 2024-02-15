@@ -82,8 +82,8 @@
           <td>Custom displayed content including {query.value}</td>
         </tr>
         <tr>
-          <td>Row 2, Cell 4</td>
-          <td>Row 2, Cell 5</td>
+          <td>/custom?value=moustache</td>
+          <td>Good looking moustache teacher</td>
         </tr>
       </tbody>
     </table>
@@ -92,16 +92,19 @@
 
     <div>
       <h2>For reading files</h2>
-      <p>For reading files</p>
+      <p>For reading files I've used The node:fs module enables interacting with the file system in a way modeled on standard POSIX functions.</p>
     </div>
 
     <div>
       <h2>For displaying Content</h2>
-      <p>For displaying content</p>
+      <p>For displaying HTML content, I've used the fs module together with the readFile method, that Asynchronously reads the entire contents of a file. The trick here was that you do need to specify the encoding, like "utf8" for example for html files. 
+        <p> The very same process applied to pictures, used the very same method which is also readFile but this time I had to edit the <em> res.writeHead(200, { "Content-Type": "image/jpeg" }); </em></p>
+      </p>
     </div>
     <div>
       <h2>For Custom Queries</h2>
-      <p>For custom queries</p>
+      <p>For custom queries, I had to be very clear in the req.url thingy, taking use of the url module together with the parse method, I was able to pass the url and add custom routes inside of if statement, giving this sort of syntax: <em> parsedUrl.pathname === "/custom" && parsedUrl.query.value === undefined</em>
+      </p>
     </div>
     <footer><p>Copyright Ed ® 2024</p></footer>
   </body>

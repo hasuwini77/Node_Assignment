@@ -90,6 +90,18 @@ function serveTextFile(res, fileName) {
   });
 }
 
+function serveJpegImage(res, fileName) {
+  fs.readFile(fileName, (err, data) => {
+    if (err) {
+      serveError(res, 500, "Internal Server Error");
+      return;
+    }
+
+    res.writeHead(200, { "Content-Type": "image/jpeg" });
+    res.end(data);
+  });
+}
+
 function serveError(res, statusCode, message) {
   res.writeHead(statusCode, { "Content-Type": "text/plain" });
   res.end(message);
@@ -127,18 +139,6 @@ function getUndefinedContent() {
       </body>
     </html>
   `;
-}
-
-function serveJpegImage(res, fileName) {
-  fs.readFile(fileName, (err, data) => {
-    if (err) {
-      serveError(res, 500, "Internal Server Error");
-      return;
-    }
-
-    res.writeHead(200, { "Content-Type": "image/jpeg" });
-    res.end(data);
-  });
 }
 
 // submit?content=Yoda
