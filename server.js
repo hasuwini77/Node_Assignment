@@ -135,7 +135,7 @@ function serveJpegImage(res, fileName) {
       return;
     }
 
-    res.writeHead(200, { "Content-Type": "image/jpeg" });
+    res.writeHead(200, { "Content-Type": "image/png" });
     res.end(data);
   });
 }
