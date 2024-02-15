@@ -2,7 +2,7 @@ const http = require("http");
 const url = require("url");
 const fs = require("fs");
 
-let surpriseArray = ["robhulk.png", "RobStachBasic.png", "robverine.png", "robyoda1.png", "robyoda2.png"];
+let surpriseArray = ["./robhulk.jpg", "./RobStachBasic.jpg", "./robverine.jpg", "./robyoda1.jpg", "./robyoda2.jpg"];
 let surprisePic = surpriseArray[Math.floor(Math.random() * surpriseArray.length)];
 http
   .createServer((req, res) => {
@@ -46,11 +46,10 @@ http
       serveHtml(res, contactContent);
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === "surprise") {
       serveHtmlFile(res, "surpriseContent.html");
-      setTimeout(() => {
-        serveJpegImage(res, surprisePic);
-      }, 2500);
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value === undefined) {
       serveHtml(res, getUndefinedContent());
+    } else if (parsedUrl.pathname === "/randomRobImage") {
+      serveJpegImage(res, surprisePic);
     } else if (parsedUrl.pathname === "/custom" && parsedUrl.query.value !== undefined) {
       serveHtml(res, getCustomContent(parsedUrl.query.value));
     } else if (parsedUrl.pathname === "/index") {
@@ -135,7 +134,7 @@ function serveJpegImage(res, fileName) {
       return;
     }
 
-    res.writeHead(200, { "Content-Type": "image/png" });
+    res.writeHead(200, { "Content-Type": "image/jpeg" });
     res.end(data);
   });
 }
